@@ -1,0 +1,10 @@
+name: Feature request
+description: Sugira uma melhoria
+body:
+  - type: textarea
+    id: feature
+    attributes:
+      label: Descrição
+      placeholder: O que você gostaria que fosse adicionado?
+    validations:
+      required: true

@@ -1,0 +1,10 @@
+name: Bug report
+description: Reporte um problema
+body:
+  - type: textarea
+    id: bug
+    attributes:
+      label: Descreva o bug
+      placeholder: O que aconteceu?
+    validations:
+      required: true
