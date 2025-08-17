@@ -1,0 +1,113 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// MODELOS DA APLICAÇÃO
+
+// Modelo para Usuários (Dentistas, Secretárias, etc.)
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  password  String // Armazenaremos o hash da senha, não a senha em texto plano
+  role      UserRole @default(DENTIST)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  appointments Appointment[]
+}
+
+enum UserRole {
+  ADMIN
+  DENTIST
+  SECRETARY
+}
+
+// Modelo para Pacientes
+model Patient {
+  id          String   @id @default(uuid())
+  name        String
+  cpf         String   @unique
+  birthDate   DateTime
+  phone       String
+  email       String? // Opcional, caso o paciente não tenha email
+  address     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  appointments Appointment[]
+  treatments   Treatment[]
+  examinations Examination[]
+}
+
+// Modelo para Agendamentos
+model Appointment {
+  id        String            @id @default(uuid())
+  date      DateTime
+  status    AppointmentStatus @default(SCHEDULED)
+  notes     String?
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+
+  patient   Patient @relation(fields: [patientId], references: [id])
+  patientId String
+
+  dentist   User   @relation(fields: [dentistId], references: [id])
+  dentistId String
+
+  records Record[]
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  CONFIRMED
+  COMPLETED
+  CANCELED
+  MISSED
+}
+
+// Modelo para Tratamentos (Plano de tratamento)
+model Treatment {
+  id          String   @id @default(uuid())
+  description String
+  status      String   @default("Planned") // Ex: Planned, In Progress, Completed
+  totalValue  Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  patient   Patient @relation(fields: [patientId], references: [id])
+  patientId String
+
+  records Record[]
+}
+
+// Modelo para Prontuário (Registros de um tratamento ou consulta)
+model Record {
+  id        String   @id @default(uuid())
+  entry     String // Descrição do que foi feito
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  treatment     Treatment?   @relation(fields: [treatmentId], references: [id])
+  treatmentId   String?
+  appointment   Appointment? @relation(fields: [appointmentId], references: [id])
+  appointmentId String?
+}
+
+// Modelo para Exames e Documentos
+model Examination {
+  id          String   @id @default(uuid())
+  title       String // Ex: "Raio-X Panorâmico", "Receita Amoxicilina"
+  type        String // Ex: "IMAGE", "PDF"
+  fileUrl     String // URL para o arquivo armazenado (veremos o upload depois)
+  uploadedAt  DateTime @default(now())
+
+  patient   Patient @relation(fields: [patientId], references: [id])
+  patientId String
+}
