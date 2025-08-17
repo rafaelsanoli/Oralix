@@ -1,112 +1,62 @@
-Sobre o Projeto
-Oralix é um sistema de gestão para clínicas odontológicas projetado para digitalizar e otimizar todas as operações do dia a dia. A plataforma busca eliminar o uso de papel, centralizar as informações de forma segura e aprimorar a comunicação e a experiência do paciente.
+# 🦷 Oralix - Sistema de Gestão Odontológica Inteligente
 
-A solução é dividida em duas frentes principais:
+![Oralix](docs/ORALIX.png)
 
-** Plataforma Web:** Um painel administrativo robusto para dentistas e secretárias gerenciarem agendamentos, prontuários eletrônicos, tratamentos, finanças e muito mais.
+**Digitalize sua clínica. Encante seus pacientes.**
 
-** Aplicativo Mobile (iOS & Android):** Uma interface intuitiva para que os pacientes possam agendar consultas, acessar seus exames e receitas, e acompanhar seus tratamentos na palma da mão.
+---
 
-** Principais Funcionalidades**
-|
+## 🌟 Visão Geral
+O **Oralix** é uma plataforma **all-in-one** que transforma a gestão de clínicas odontológicas, substituindo processos manuais por fluxos digitais intuitivos. Com **Web App para profissionais** e **Mobile App para pacientes**, oferecemos:
 
-| Funcionalidade | Plataforma Web (Clínica) | App Mobile (Paciente) |
-| Gestão de Agenda | ✅ | - |
-| Agendamento Online | ✅ | ✅ |
-| Prontuário Eletrônico | ✅ | - |
-| Odontograma Digital | ✅ | - |
-| Plano de Tratamento | ✅ | ✅ |
-| Acesso a Exames e Receitas | ✅ | ✅ |
-| Controle Financeiro | ✅ | ✅ |
-| Gestão de Pacientes | ✅ | - |
-| Notificações e Lembretes | ✅ | ✅ |
+- 📅 **Agendamento inteligente**
+- 🦷 **Prontuário eletrônico com odontograma digital**
+- 💰 **Controle financeiro integrado**
+- 📱 **Acesso remoto a exames e receitas**
 
-** Arquitetura e Tecnologias**
-O projeto é construído como um Monorepo utilizando pnpm workspaces, o que facilita o compartilhamento de código e a manutenção centralizada. A stack de tecnologias foi escolhida para garantir performance, escalabilidade e uma excelente experiência de desenvolvimento.
+**Stack Moderna:** NestJS (Backend), React/React Native (Frontend), PostgreSQL + Prisma ORM.
 
-| Camada | Tecnologia | Framework / Biblioteca | Linguagem |
-| Backend | Node.js | NestJS | TypeScript |
-| Banco de Dados | PostgreSQL | Prisma ORM | SQL |
-| Web App (Clínica) | React | Vite + Mantine UI | TypeScript |
-| Mobile App (Paciente) | React Native | Expo | TypeScript |
+---
 
-** Fluxo da Aplicação**
-A interação entre as plataformas foi desenhada para ser fluida e em tempo real:
+## 🚀 Funcionalidades
 
-Agendamento: O Paciente, através do app mobile, seleciona um horário disponível na agenda de um profissional.
+### Para Clínicas (Web App)
+| Ícone | Funcionalidade           | Descrição                                  |
+|-------|--------------------------|--------------------------------------------|
+| 📅    | Agenda Inteligente       | Visualização por profissional/dia/semana.  |
+| 🖥️    | Prontuário Eletrônico    | Histórico completo + odontograma digital.  |
+| 💸    | Gestão Financeira        | Faturamento, recebimentos e relatórios.    |
 
-Registro: A requisição é enviada para a API Backend, que valida as informações e salva o agendamento no banco de dados.
+### Para Pacientes (Mobile App)
+| Ícone | Funcionalidade           | Descrição                                  |
+|-------|--------------------------|--------------------------------------------|
+| 📱    | Agendamento Online       | Escolha de horários em tempo real.         |
+| 🏥    | Acesso a Documentos      | Exames, receitas e planos de tratamento.   |
+| 🔔    | Lembretes Automáticos    | Notificações para consultas e pagamentos.  |
 
-Notificação: O sistema notifica a Plataforma Web, e a consulta aparece instantaneamente na agenda do profissional.
+---
 
-Consulta: Durante a consulta, o Dentista utiliza a plataforma web para acessar o prontuário, atualizar o odontograma e registrar os procedimentos realizados.
+## 🛠 Tecnologias
 
-Documentos: Ao final, o profissional pode anexar um Raio-X ou gerar uma receita. O documento é salvo pela API e fica imediatamente disponível para o Paciente em seu aplicativo.
+<div align="center">
 
-** Começando (Getting Started)**
-Siga os passos abaixo para configurar e rodar o projeto em seu ambiente local.
+| **Backend**       | **Frontend Web**   | **Mobile**         | **Banco de Dados** |
+|-------------------|--------------------|--------------------|--------------------|
+| ![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white) | ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black) | ![React Native](https://img.shields.io/badge/React_Native-61DAFB?style=for-the-badge&logo=react&logoColor=black) | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white) |
+| ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) | ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white) | ![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white) | ![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white) |
 
-Pré-requisitos
-Node.js (versão 20.x ou superior)
+</div>
 
-pnpm (versão 9.x ou superior)
+---
 
-Docker (recomendado para rodar o PostgreSQL)
-
-Instalação
-Clone o repositório:
-
-git clone https://github.com/rafaelsanoli/Oralix.git
-cd Oralix
-
-
-Instale as dependências:
-O pnpm irá instalar as dependências de todos os projetos do monorepo.
-
-pnpm install
-
-
-Configure as Variáveis de Ambiente:
-
-Navegue até a pasta da API: cd apps/api
-
-Renomeie o arquivo .env.example (se houver) para .env.
-
-Abra o arquivo .env e configure a DATABASE_URL com a string de conexão do seu banco de dados PostgreSQL.
-
-DATABASE_URL="postgresql://SEU_USUARIO:SUA_SENHA@localhost:5432/oralix_db?schema=public"
-
-
-Execute a Migração do Banco de Dados:
-Este comando irá criar todas as tabelas necessárias no seu banco de dados.
-
-pnpm api exec prisma migrate dev
-
-
-Rode a Aplicação:
-Este comando iniciará o backend, o frontend web e o app mobile simultaneamente.
-
-pnpm dev
-
-
-API estará rodando em http://localhost:3000
-
-Aplicação Web estará rodando em http://localhost:5173
-
-O Expo (Mobile) irá iniciar e mostrar um QR Code para você escanear com o app Expo Go.
-
-** Como Contribuir**
-Contribuições são o que tornam a comunidade de código aberto um lugar incrível para aprender, inspirar e criar. Qualquer contribuição que você fizer será muito apreciada.
-
-Faça um Fork do projeto.
-
-Crie uma nova Branch (git checkout -b feature/FuncionalidadeIncrivel).
-
-Faça o Commit das suas alterações (git commit -m 'feat: Adiciona FuncionalidadeIncrivel').
-
-Faça o Push para a Branch (git push origin feature/FuncionalidadeIncrivel).
-
-Abra um Pull Request.
-
-** Licença**
-Distribuído sob a licença MIT. Veja LICENSE para mais informações.
+## 📂 Estrutura do Projeto
+```bash
+oralix/
+├── apps/
+│   ├── api/          # Backend (NestJS)
+│   ├── web/          # Frontend Web (React)
+│   └── mobile/       # App Mobile (React Native)
+├── packages/
+│   ├── ui/           # Componentes compartilhados
+│   └── config/       # Configurações globais
+└── README.md         # Este arquivo
